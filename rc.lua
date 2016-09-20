@@ -379,11 +379,11 @@ awful.rules.rules = {
     { rule = { class = "Emacs "},
       properties = { tag = tags[1][2] } },
     { rule = { class = "Firefox" },
-      properties = { tag = tags[1][3] } },
-    { rule = { class = "Pcmanfm"},
       properties = { tag = tags[1][4] } },
     { rule = { class = "Alsaplayer"},
       properties = { tag = tags[1][5] } },
+    { rule = { class = "Pcmanfm"},
+      properties = { tag = tags[1][6] } },
 }
 -- }}}
 
