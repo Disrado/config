@@ -85,7 +85,7 @@ end
 tags = {}
 for s = 1, screen.count() do
     -- Each screen has its own tag table.
-    tags[s] = awful.tag({ "  cons  ", "  emacs  ", "  www  ", "  pcmanfm  ", "  Music  ", "  Tmp        " }, s, layouts[1])
+    tags[s] = awful.tag({ "  cons  ", "  emacs  ", "emacs", "  www  ", "  Musik  ","  Tmp  ", "  Tmp        " }, s, layouts[1])
 end
 -- }}}
 
@@ -376,14 +376,13 @@ awful.rules.rules = {
     -- Start applications on the set tags
     { rule = { class = "Terminator"},
       properties = { tag = tags[1][1] } },
-    { rule = { class = "Emacs "},
+    { rule = { class = "Emacs"},
       properties = { tag = tags[1][2] } },
     { rule = { class = "Firefox" },
       properties = { tag = tags[1][4] } },
     { rule = { class = "Alsaplayer"},
       properties = { tag = tags[1][5] } },
-    { rule = { class = "Pcmanfm"},
-      properties = { tag = tags[1][6] } },
+
 }
 -- }}}
 
@@ -460,6 +459,16 @@ end)
 --client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_normal end)
 -- }}}
 
-os.execute("pgrep -u $nik -x nm-applet || (nm-applet &)")
-os.execute("pgrep -u $nik -x volumeicon || (volumeicon &)")
+-- {{{ AUTORUNS
+function run_once(prg)
+    if not prg then
+        do return nil end
+    end
+    awful.util.spawn_with_shell("ps ux | grep -v grep | grep " .. prg .. " || (" .. prg .. " &)")
+end
+
+run_once("xset r rate 280 50")
+run_once("volumeicon")
+run_once("nm-applet")
+
 os.execute("pgrep -u $nik -x xxkb || (xxkb &)")
