@@ -11,6 +11,9 @@
    (quote
     (lua-mode company-c-headers autopair auto-complete-auctex auto-compile))))
 
+;;Fullscreen
+(toggle-frame-maximized)
+
 ;;TABSIZE
 (setq c-default-style "linux"c-basic-offset 8)
 
@@ -33,13 +36,14 @@
 
 ;; Scrolling settings
 (setq scroll-step       1)         ;; вверх-вниз по 1 строке
-(setq scroll-margin    10)         ;; сдвигать буфер верх/вниз когда курсор в 10 шагах от границы  
+(setq scroll-margin    8)         ;; сдвигать буфер верх/вниз когда курсор в 10 шагах от границы  
 (setq scroll-conservatively 10000)
 
 (tooltip-mode      -1)
 (scroll-bar-mode   -1)             ;;scroll bar
 (tool-bar-mode     -1)             ;;tool bar
 (menu-bar-mode     -1)             ;;menu bar
+(toggle-scroll-bar -1)
 (blink-cursor-mode -1)             ;;blink cursor
 (setq use-dialog-box nil)          ;;minibufer only
 (setq redisplay-dont-pause t)      ;;лучшая отрисовка минибуфера
@@ -47,8 +51,7 @@
 
 ;;KILL_WORD
 (global-set-key "\C-w" 'backward-kill-word)
-(global-set-key "\C-x\C-k" 'kill-region)
-(global-set-key "\C-c\C-k" 'kill-region) 
+(global-set-key "\C-x\C-k" 'compile)
 
 ;;Backup directory
 (setq backup-directory-alist `(("." . "/home/nik/emacs_backup_files")))
@@ -77,9 +80,9 @@
 (column-number-mode t)             ;; показать номер столбца в mode-line
 (setq linum-format " %d")          ;; задаем формат нумерации
 
-;;AUTOCOMPLETE
-(require 'auto-complete)           ;;start auto-complete with emacs
-(ac-config-default)                ;;dp default config for auto-complete
+;;;;AUTOCOMPLETE
+;;(require 'auto-complete)           ;;start auto-complete with emacs
+;;(ac-config-default)                ;;dp default config for auto-complete
 
 ;;SNIPPETS
 (require 'yasnippet)
@@ -100,6 +103,9 @@
  ;; If there is more than one, they won't work right.
  )
 
+;;LUA MODE
+(require 'lua-mode)
+
 ;;C# MODE
 (autoload 'csharp-mode "csharp-mode" "Major mode for editing C# code." t)
 (setq auto-mode-alist (append '(("\\.cs$" . csharp-mode)) auto-mode-alist))
@@ -109,4 +115,3 @@
 (require 'omnisharp-server-actions)
 (require 'omnisharp-auto-complete-actions)
 (require 'omnisharp-settings)
-
