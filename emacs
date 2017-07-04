@@ -9,9 +9,9 @@
  '(inhibit-startup-screen t)
  '(package-selected-packages
    (quote
-    (redo+ persistent-soft projectile sr-speedbar ido-at-point flycheck-clangcheck lua-mode company-c-headers autopair auto-complete-auctex auto-compile))))
+    (flycheck company-irony company-irony-c-headers irony redo+ persistent-soft projectile sr-speedbar ido-at-point flycheck-clangcheck lua-mode company-c-headers autopair auto-complete-auctex auto-compile))))
 
-(add-to-list 'load-path "~/.emacs.d/lisp/redo+/")
+(add-to-list 'load-path "~/.emacs.d/elpa/redo+-20131117.351")
 
 ;;Backup directory
 (setq backup-directory-alist `(("." . "/home/nik/emacs_backup_files")))
@@ -27,7 +27,9 @@
 (toggle-scroll-bar -1)
 
 ;;TABSIZE
-(setq c-default-style "linux"c-basic-offset 8)
+(setq-default indent-tabs-mode nil)
+(setq-default c-basic-offset 4)
+;;(setq c-default-style "linux" c-basic-offset 4)
 
 ;;FONT
 (add-to-list 'default-frame-alist '(font . "Roboto Mono -12"))
@@ -45,7 +47,7 @@
 
 ;; Scrolling settings
 (setq scroll-step       1)         ;; вверх-вниз по 1 строке
-(setq scroll-margin    8)         ;; сдвигать буфер верх/вниз когда курсор в 10 шагах от границы  
+(setq scroll-margin    8)         ;; сдвигать буфер верх/вниз когда курсор в 8 шагах от границы  
 (setq scroll-conservatively 10000)
 
 ;;Disable blink cursor
@@ -98,8 +100,8 @@
   (define-key my-key-map (kbd "C-d") 'kill-word)
   (define-key my-key-map (kbd "C-w") 'backward-kill-word)
   (define-key my-key-map (kbd "C-f") 'kill-line)
-  
-;;  (define-key my-key-map (kbd "M-m") 'set-mark-command)
+
+  (define-key my-key-map (kbd "M-a") 'execute-extended-command)
   
   (define-key my-key-map (kbd "M-x") 'kill-region)
   (define-key my-key-map (kbd "M-c") 'copy-region-as-kill)
@@ -163,9 +165,10 @@
 (add-hook 'c-mode-common-hook   'hs-minor-mode)
 
 ;;FLYCHECK
+(add-hook 'after-init-hook #'global-flycheck-mode)
 (require 'package)
 (flycheck-mode)
-(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "c++14")))
+(add-hook 'c++-mode-hook (lambda () (setq flycheck-gcc-language-standard "-std=c++14")))
 
 ;;AUTOPAIR
 (require 'autopair)                ;; курсор между скобок после их закрытия
@@ -183,10 +186,32 @@
 (require 'yasnippet)
 (yas-global-mode 1)
 
+;;LUA_MODE
+(require 'lua-mode)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
 ;;COMPANY_MODE
 (require 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 
-;;LUA MODE
-(require 'lua-mode)
-(custom-set-faces)
+;;COMPANY_IRONY
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+
+;;COMPANY_IRONY_C_HEADERS
+(require 'company-irony-c-headers)
+;; Load with `irony-mode` as a grouped backend
+(eval-after-load 'company
+  '(add-to-list
+    'company-backends '(company-irony-c-headers company-irony)))
+
+;;IRONY
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
