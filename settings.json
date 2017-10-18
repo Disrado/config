@@ -1,0 +1,13 @@
+{
+    "workbench.colorTheme": "Kimbie Dark",
+    "workbench.activityBar.visible": true,
+    "window.menuBarVisibility": "toggle",
+    "workbench.sideBar.location": "left",
+    "editor.cursorBlinking": "solid",
+    "editor.cursorStyle": "block",
+    "editor.renderIndentGuides": false,
+    "editor.renderLineHighlight": "none",
+    "workbench.colorCustomizations": {
+        "editorCursor.foreground": "#ffff00"
+    }
+}
