@@ -1,13 +1,17 @@
 {
-    "workbench.colorTheme": "Kimbie Dark",
-    "workbench.activityBar.visible": true,
-    "window.menuBarVisibility": "toggle",
+    "terminal.integrated.fontFamily": "Menlo for Powerline",
+    "workbench.colorTheme": "Monokai",
+    "window.menuBarVisibility": "default",
     "workbench.sideBar.location": "left",
     "editor.cursorBlinking": "solid",
     "editor.cursorStyle": "block",
-    "editor.renderIndentGuides": false,
-    "editor.renderLineHighlight": "none",
+    "editor.renderLineHighlight": "true",
     "workbench.colorCustomizations": {
         "editorCursor.foreground": "#ffff00"
-    }
+    },
+    "explorer.confirmDelete": false,
+    "editor.renderWhitespace": "boundary",
+    "workbench.activityBar.visible": true,
+    "explorer.confirmDragAndDrop": false,
+    "editor.minimap.enabled": false,
 }
