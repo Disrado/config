@@ -170,11 +170,6 @@
         "command": "keybindings.editor.searchKeybindings",
         "when": "inKeybindings && keybindingFocus" 
     },
-    { 
-        "key": "ctrl+g",
-        "command": "editor.action.addSelectionToNextFindMatch",
-        "when": "editorFocus"
-    },
     {
         "key": "ctrl+shift+j",
         "command": "cursorWordStartLeftSelect",
@@ -200,4 +195,5 @@
         "command": "editor.action.addSelectionToNextFindMatch",
         "when": "editorFocus"
     },
+    // ctrl + g is free
 ]
