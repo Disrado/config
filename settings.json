@@ -1,5 +1,4 @@
 {
-    "terminal.integrated.fontFamily": "Menlo for Powerline",
     "workbench.colorTheme": "Monokai",
     "window.menuBarVisibility": "default",
     "workbench.sideBar.location": "left",
@@ -14,4 +13,12 @@
     "workbench.activityBar.visible": true,
     "explorer.confirmDragAndDrop": false,
     "editor.minimap.enabled": false,
+    "terminal.integrated.fontFamily": "Menlo for Powerline",
+    "window.zoomLevel": 0,
+    "workbench.statusBar.visible": true,
+    "editor.rulers": [
+        100
+    ],
+    "editor.insertSpaces": false,
+    "editor.tabCompletion": "on"
 }

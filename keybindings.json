@@ -48,15 +48,10 @@
         "command": "selectNextSuggestion",
         "when": "editorTextFocus && suggestWidgetMultipleSuggestions && suggestWidgetVisible" 
     },
-    { 
-        "key": "alt+i", 
-        "command": "editor.action.moveLinesUpAction",
-        "when": "editorTextFocus && !editorReadonly" 
-    },
     {
-        "key": "alt+o",
-        "command": "editor.action.moveLinesDownAction",
-        "when": "editorTextFocus && !editorReadonly"
+        "key": "alt+i",
+        "command": "editor.action.goToDeclaration",
+        "when": "editorHasDefinitionProvider && editorTextFocus && !isInEmbeddedEditor"
     },
     { 
         "key": "alt+down",
@@ -195,5 +190,15 @@
         "command": "editor.action.addSelectionToNextFindMatch",
         "when": "editorFocus"
     },
+    {
+        "key": "ctrl+k",
+        "command": "scrollLineUp",
+        "when": "textInputFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "scrollLineDown",
+        "when": "textInputFocus"
+    }
     // ctrl + g is free
 ]
